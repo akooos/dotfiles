@@ -1,0 +1,8 @@
+#!/bin/bash
+if pgrep "grive" > /dev/null
+then
+  echo "Still running."
+  exit 0
+fi
+
+cd /home/akos/grive && grive

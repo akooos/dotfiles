@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ -d ".git" ];
+then
+  mkdir -p archive
+  ofn=archive/nginx-access-log-parser-for-mbok_$(date "+%Y%m%d%H%M%S").zip 
+  echo "Creating git repo archive: $ofn"
+  if [ -z "$1" ];
+  then
+    git archive --format zip --output $ofn master
+  else
+    git archive --format zip --output $ofn $1
+  fi
+else
+  echo "Cannot make archive, because no GIT repo. "
+fi
+
