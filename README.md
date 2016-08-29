@@ -1,2 +1,2 @@
 # useful
-Useful script etc.
+Some scripts, configs etc.
