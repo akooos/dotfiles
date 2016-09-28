@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+follow()
+{
+    #standard output is fd/1, but for me 3 worked
+    tail -f "/proc/"$1"/fd/1"
+}
+
+print_help(){
+    echo "PEEP 1.0 - convenient way to see standard output of a process";
+
+    exit 0;
+}
+
+if [ -z "$1" ];
+then
+    echo "Please give a single process name, pid or execution string as argument! Don't forget quotes for long string with spaces etc.";
+    print_help;
+fi
+
+if [[ "$1" =~ ^[1-9]*[0-9]+$ ]];
+then
+  follow $1
+else
+    processes=$( ps -ef | grep $1 |  grep -v 'grep' )
+    pid=$(echo -n $processes | awk '{print $2}')
+
+    if  [[ "$pid" =~ ^[1-9]*[0-9]+$ ]];
+    then
+        follow $pid
+    else
+        echo "Could not get single pid from processes. Please provide unique process execution string.";
+        echo 'e.g.: pepe "/usr/bin/python -O /usr/share/wicd/daemon/wicd-daemon.py"';
+        echo "These processes were found:";
+        echo $processes;
+    fi
+fi
