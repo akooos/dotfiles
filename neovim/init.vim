@@ -1,5 +1,6 @@
 "let NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax on
+set modeline
 set nu 
 set rnu 
 set ruler 
@@ -18,6 +19,12 @@ set undolevels=1000
 set undoreload=10000
 set background=dark
 set noswapfile
+"set filetype indent on
+set autoindent
+set showbreak=⌁⌁⌁
+set listchars=eol:⏎,tab:»·,trail:•,nbsp:≡
+"set listchars="eol:⏎,tab:⇥,trail:•,nbsp:≡"
+set list
 "set t_Co=256
 "Tab navigation
 nnoremap th  :tabfirst<CR>
@@ -112,7 +119,7 @@ endfunction
 "autocmd VimEnter * tab all
 "autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 "set foldmethod=syntax
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 function! ClipboardYank()
   call system('xclip -i -selection clipboard', @@)
 endfunction
@@ -159,6 +166,7 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'nathanaelkane/vim-indent-guides'
 "Plug 'jelera/vim-javascript-syntax'
 Plug 'Valloric/YouCompleteMe'
+Plug 'lervag/vimtex'
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
@@ -247,10 +255,12 @@ Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-vinegar'
 "Plug 'Shutnik/jshint2.vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'vim-scripts/Vimchant'
 Plug 'tpope/vim-obsession'
+Plug '907th/vim-auto-save'
 call plug#end()
-
-let g:airline#extensions#tabline#enabled = 2
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -261,11 +271,14 @@ let g:airline_left_alt_sep = '|'
 let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
 colorscheme molokai 
-let g:airline_theme= 'serene'
+let g:airline_theme= 'molokai'
 let jshint2_save = 1
 let jshint2_read = 1
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+let g:tex_flavor='latex'
+let g:vimchant_spellcheck_lang = 'hu'
+let g:auto_save_events = ["InsertLeave"]", "TextChanged"]
 set tabline=%!MyTabLine()  " custom tab pages line
