@@ -1,0 +1,2 @@
+#!/bin/bash
+curl http://127.0.0.1:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
