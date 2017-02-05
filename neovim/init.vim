@@ -4,8 +4,9 @@ set modeline
 set nu 
 set rnu 
 set ruler 
-set textwidth=80
-set wrapmargin=80 
+set colorcolumn=80
+set textwidth=0
+set wrapmargin=0 
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -15,8 +16,8 @@ set smartindent
 filetype indent on
 set undodir=~/.config/nvim/undodir
 set undofile
-set undolevels=1000
-set undoreload=10000
+set undolevels=10000
+set undoreload=100000
 set background=dark
 set noswapfile
 "set filetype indent on
@@ -119,7 +120,7 @@ endfunction
 "autocmd VimEnter * tab all
 "autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 "set foldmethod=syntax
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 function! ClipboardYank()
   call system('xclip -i -selection clipboard', @@)
 endfunction
@@ -160,11 +161,15 @@ let g:UltiSnipsEditSplit="vertical"
 "For JS development
 Plug 'scrooloose/syntastic'
 let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_jsxhint_exec = 'eslint'
 "Plug 'pangloss/vim-javascript'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'pangloss/vim-javascript'
 "Plug 'jelera/vim-javascript-syntax'
+"Plug 'othree/yajs'
+"Plug 'othree/es.next.syntax.vim'
+"Plug 'mxw/vim-jsx'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Valloric/YouCompleteMe'
 Plug 'lervag/vimtex'
 let g:ycm_add_preview_to_completeopt=0
@@ -181,8 +186,6 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 "Plug 'ap/vim-css-color'
 "Plug 'chrisbra/Colorizer'
 Plug 'chauncey-garrett/vim-colorizer'
- "let g:colorizer_auto_color = 1
- "let g:colorizer_auto_filetype='css,html'
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
@@ -241,7 +244,9 @@ Plug 'tpope/vim-commentary'
 "Plug 'tpope/vim-endwise'
 "Plug 'tpope/vim-eunuch'
 "Plug 'tpope/vim-fireplace'
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'airblade/vim-gitgutter'
 "Plug 'tpope/vim-leiningen'
 Plug 'tpope/vim-markdown'
 "Plug 'tpope/vim-projectionist'
@@ -274,11 +279,28 @@ colorscheme molokai
 let g:airline_theme= 'molokai'
 let jshint2_save = 1
 let jshint2_read = 1
+let g:jsx_ext_required = 0
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 let g:tex_flavor='latex'
 let g:vimchant_spellcheck_lang = 'hu'
-let g:auto_save_events = ["InsertLeave"]", "TextChanged"]
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
 set tabline=%!MyTabLine()  " custom tab pages line
+
+autocmd BufRead,BufNewFile *.css,*.qss,*.html ColorHighlight
+autocmd BufRead,BufNewFile .babelrc,.eslintrc,.jshintrc set filetype=json
+" by default, the indent is 2 spaces. 
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+
+" for html/rb files, 2 spaces
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+
+" for js/coffee/jade files, 4 spaces
+autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab

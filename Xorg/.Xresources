@@ -24,7 +24,7 @@ URxvt.colorUL: #81A2BE
 !URxvt.boldItalicFont: xft:Inconsolata:size=10:hintstyle=hintfull, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
 
 !URxvt.reverseVideo:     True
-URxvt.letterSpace:2 
+!URxvt.letterSpace:2 
 !URxvt*font: xft:inconsolata for Hack:size=10
 !URxvt*boldFont: xft:inconsolata for Hack:size=10
 !URxvt*italicFont: xft:inconsolata for Hack:size=10
@@ -36,10 +36,10 @@ Xft.hinting:    true
 Xft.hintstyle:  hintslight
 Xft.autohint:   false
 Xft.lcdfilter:  lcddefault
-!URxvt*font: xft:terminus:hinting=true:pixelsize=12:antialias=false, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-!URxvt*boldFont: xft:terminus:style=bold:hinting=true:pixelsize=12:antialias=false, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-!URxvt*italicFont: xft:terminus:style=italic:hinting=true:pixelsize=12:antialias=false, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-!URxvt*boldItalicFont: xft:terminus:style=bolditalic:hinting=true:pixelsize=12:antialias=false, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
+URxvt.font:     xft:bitstream vera sans mono:size=10:antialias=true
+URxvt.boldFont: xft:bitstream vera sans mono:bold:size=10:antialias=true
+URxvt*italicFont: xft:bitstream vera sans mono:bold:size=10:antialias=true
+URxvt*boldItalicFont: xft:bitstream vera sans mono:bold:size=10:antialias=true
 
 ! Varios
 URxvt.depth: 32
