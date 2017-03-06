@@ -1,51 +1,36 @@
-XTerm*visualBell:False
+xterm*bellIsUrgent: true
+XTerm*visualBell:True
 
-*visualBell:False
+*visualBell:True
 ! URXVT
 !----------------------------------------------------------------------
-URxvt*visualBell:False
+URxvt*visualBell:True
 ! Colores
 ! bold, italic, underline
 URxvt.colorBD: #B5BD68
 URxvt.colorIT: #B294BB
 URxvt.colorUL: #81A2BE
-! Fuentes
-! Para los caracteres especiales de la línea de powerline es necesario
-! una fuente powerline. Inconsolata for powerline los tienes, pero solo
-! a tamaño 12.
-! Uso el Inconsolata normal, con resguardo de terminespowerline y asi
-! funcionan. :)
-!
 
-!URxvt.letterSpace: -2
-!URxvt.font: xft:Inconsolata:size=10:hintstyle=hintfull, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-!URxvt.boldFont: xft:Inconsolata:size=10:hintstyle=hintfull, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-!URxvt.italicFont: xft:Inconsolata:size=10:hintstyle=hintfull, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-!URxvt.boldItalicFont: xft:Inconsolata:size=10:hintstyle=hintfull, -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
-
-!URxvt.reverseVideo:     True
-!URxvt.letterSpace:2 
-!URxvt*font: xft:inconsolata for Hack:size=10
-!URxvt*boldFont: xft:inconsolata for Hack:size=10
-!URxvt*italicFont: xft:inconsolata for Hack:size=10
-!URxvt*bolditalicFont: xft:inconsolata for Hack:size=10
+!https://wiki.archlinux.org/index.php/font_configuration#Presets
+URxvt.letterSpace:0
+URxvt*font: xft:Hack:size=10,xft:Noto Emoji:bold:size=8:antialias=true:hinting=false,xft:Symbola:size=8:antialias=true:hinting=false
+URxvt*boldFont: xft:Hack:style=bold:size=10:autohint=false,xft:Noto Emoji:bold:size=8:antialias=true:hinting=false,xft:Symbola:size=8:antialias=true:hinting=false
+URxvt*italicFont: xft:Hack:style=italic:size=10,xft:Noto Emoji:bold:size=8:antialias=true:hinting=false,xft:Symbola:size=8:antialias=true:hinting=false
+URxvt*boldItalicFont:  xft:Hack:style=bolditalic:size=10,xft:Noto Emoji:bold:size=8:antialias=true:hinting=false,xft:Symbola:size=8:antialias=true:hinting=false
+Xft.size:       8
 Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
-Xft.hintstyle:  hintslight
-Xft.autohint:   false
+Xft.hintstyle:  hintsfull
+Xft.autohint:   true
 Xft.lcdfilter:  lcddefault
-URxvt.font:     xft:bitstream vera sans mono:size=10:antialias=true
-URxvt.boldFont: xft:bitstream vera sans mono:bold:size=10:antialias=true
-URxvt*italicFont: xft:bitstream vera sans mono:bold:size=10:antialias=true
-URxvt*boldItalicFont: xft:bitstream vera sans mono:bold:size=10:antialias=true
-
 ! Varios
-URxvt.depth: 32
+URxvt.termName: rxvt-unicode
+Rxvt.depth: 32
 URxvt*scrollBar: false
-URxvt.urgentOnBell: false
-URxvt.visualBell: false
+URxvt.urgentOnBell: true
+URxvt.visualBell: true
 URxvt*saveLines: 8044
 URxvt*mouseWheelScrollPage: true
 ! Extensions ~/.urxvt./ext
@@ -73,58 +58,58 @@ URxvt.cursorColor:  #F9EC5E
 URxvt.pointerColor: #F9F510
 
 ! Reasigning keys for vim keys
-URxvt.keysym.S-Up             : \033[1;2A
-URxvt.keysym.S-Down           : \033[1;2B
-URxvt.keysym.S-Right          : \033[1;2C
-URxvt.keysym.S-Left           : \033[1;2D
-URxvt.keysym.S-Home           : \033[1;2H
-URxvt.keysym.S-End            : \033[1;2F
-URxvt.keysym.M-Up             : \033[1;3A
-URxvt.keysym.M-Down           : \033[1;3B
-URxvt.keysym.M-Right          : \033[1;3C
-URxvt.keysym.M-Left           : \033[1;3D
-URxvt.keysym.M-Page_Up        : \033[5;3~
-URxvt.keysym.M-Page_Down      : \033[6;3~
-URxvt.keysym.M-Home           : \033[1;3H
-URxvt.keysym.M-End            : \033[1;3F
-URxvt.keysym.M-S-Up           : \033[1;4A
-URxvt.keysym.M-S-Down         : \033[1;4B
-URxvt.keysym.M-S-Right        : \033[1;4C
-URxvt.keysym.M-S-Left         : \033[1;4D
-URxvt.keysym.M-S-Home         : \033[1;4H
-URxvt.keysym.M-S-End          : \033[1;4F
-URxvt.keysym.C-Up             : \033[1;5A
-URxvt.keysym.C-Down           : \033[1;5B
-URxvt.keysym.C-Right          : \033[1;5C
-URxvt.keysym.C-Left           : \033[1;5D
-URxvt.keysym.C-Page_Up        : \033[5;5~
-URxvt.keysym.C-Page_Down      : \033[6;5~
-URxvt.keysym.C-Home           : \033[1;5H
-URxvt.keysym.C-End            : \033[1;5F
-URxvt.keysym.C-S-Up           : \033[1;6A
-URxvt.keysym.C-S-Down         : \033[1;6B
-URxvt.keysym.C-S-Right        : \033[1;6C
-URxvt.keysym.C-S-Left         : \033[1;6D
-URxvt.keysym.C-S-Home         : \033[1;6H
-URxvt.keysym.C-S-End          : \033[1;6F
-URxvt.keysym.M-C-Up           : \033[1;7A
-URxvt.keysym.M-C-Down         : \033[1;7B
-URxvt.keysym.M-C-Right        : \033[1;7C
-URxvt.keysym.M-C-Left         : \033[1;7D
-URxvt.keysym.M-C-Page_Up      : \033[5;7~
-URxvt.keysym.M-C-Page_Down    : \033[6;7~
-URxvt.keysym.M-C-Home         : \033[1;7H
-URxvt.keysym.M-C-End          : \033[1;7F
-URxvt.keysym.M-C-S-Up         : \033[1;8A
-URxvt.keysym.M-C-S-Down       : \033[1;8B
-URxvt.keysym.M-C-S-Right      : \033[1;8C
-URxvt.keysym.M-C-S-Left       : \033[1;8D
-URxvt.keysym.M-C-S-Home       : \033[1;8H
-URxvt.keysym.M-C-S-End        : \033[1;8F
+!URxvt.keysym.S-Up             : \033[1;2A
+!URxvt.keysym.S-Down           : \033[1;2B
+!URxvt.keysym.S-Right          : \033[1;2C
+!URxvt.keysym.S-Left           : \033[1;2D
+!URxvt.keysym.S-Home           : \033[1;2H
+!URxvt.keysym.S-End            : \033[1;2F
+!URxvt.keysym.M-Up             : \033[1;3A
+!URxvt.keysym.M-Down           : \033[1;3B
+!URxvt.keysym.M-Right          : \033[1;3C
+!URxvt.keysym.M-Left           : \033[1;3D
+!URxvt.keysym.M-Page_Up        : \033[5;3~
+!URxvt.keysym.M-Page_Down      : \033[6;3~
+!URxvt.keysym.M-Home           : \033[1;3H
+!URxvt.keysym.M-End            : \033[1;3F
+!URxvt.keysym.M-S-Up           : \033[1;4A
+!URxvt.keysym.M-S-Down         : \033[1;4B
+!URxvt.keysym.M-S-Right        : \033[1;4C
+!URxvt.keysym.M-S-Left         : \033[1;4D
+!URxvt.keysym.M-S-Home         : \033[1;4H
+!URxvt.keysym.M-S-End          : \033[1;4F
+!URxvt.keysym.C-Up             : \033[1;5A
+!URxvt.keysym.C-Down           : \033[1;5B
+!URxvt.keysym.C-Right          : \033[1;5C
+!URxvt.keysym.C-Left           : \033[1;5D
+!URxvt.keysym.C-Page_Up        : \033[5;5~
+!URxvt.keysym.C-Page_Down      : \033[6;5~
+!URxvt.keysym.C-Home           : \033[1;5H
+!URxvt.keysym.C-End            : \033[1;5F
+!URxvt.keysym.C-S-Up           : \033[1;6A
+!URxvt.keysym.C-S-Down         : \033[1;6B
+!URxvt.keysym.C-S-Right        : \033[1;6C
+!URxvt.keysym.C-S-Left         : \033[1;6D
+!URxvt.keysym.C-S-Home         : \033[1;6H
+!URxvt.keysym.C-S-End          : \033[1;6F
+!URxvt.keysym.M-C-Up           : \033[1;7A
+!URxvt.keysym.M-C-Down         : \033[1;7B
+!URxvt.keysym.M-C-Right        : \033[1;7C
+!URxvt.keysym.M-C-Left         : \033[1;7D
+!URxvt.keysym.M-C-Page_Up      : \033[5;7~
+!URxvt.keysym.M-C-Page_Down    : \033[6;7~
+!URxvt.keysym.M-C-Home         : \033[1;7H
+!URxvt.keysym.M-C-End          : \033[1;7F
+!URxvt.keysym.M-C-S-Up         : \033[1;8A
+!URxvt.keysym.M-C-S-Down       : \033[1;8B
+!URxvt.keysym.M-C-S-Right      : \033[1;8C
+!URxvt.keysym.M-C-S-Left       : \033[1;8D
+!URxvt.keysym.M-C-S-Home       : \033[1;8H
+!URxvt.keysym.M-C-S-End        : \033[1;8F
 ! :Bind C-0, C-+ and C-= to activate small, medium, and big font size resp.     
-URxvt.keysym.C-0: command:\033]710;-*-dina-medium-r-normal--13-*-*-*-*-*-*-*\007
-URxvt.keysym.C-minus: command:\033]710;-*-dina-medium-r-normal--15-*-*-*-*-*-*-*\007
-URxvt.keysym.C-equal: command:\033]710;-*-dina-medium-r-normal--16-*-*-*-*-*-*
+!URxvt.keysym.C-0: command:\033]710;-*-dina-medium-r-normal--13-*-*-*-*-*-*-*\007
+!URxvt.keysym.C-minus: command:\033]710;-*-dina-medium-r-normal--15-*-*-*-*-*-*-*\007
+!URxvt.keysym.C-equal: command:\033]710;-*-dina-medium-r-normal--16-*-*-*-*-*-*
 ! XMAILBOX
 !----------------------------------------------------------------------
 !XMailbox*update: 60
@@ -154,6 +139,7 @@ URxvt.keysym.C-equal: command:\033]710;-*-dina-medium-r-normal--16-*-*-*-*-*-*
 
 ! XTERM
 !----------------------------------------------------------------------
+XTerm*termName: xterm-256color
 xterm*geometry: 80x25
 xterm*scrollBar: false
 xterm*font: 9x15bold
