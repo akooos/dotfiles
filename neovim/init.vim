@@ -99,12 +99,11 @@ Plug 'scrooloose/syntastic'
 let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_jsxhint_exec = 'eslint'
-"Plug 'pangloss/vim-javascript'
-"Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 "Plug 'jelera/vim-javascript-syntax'
 "Plug 'othree/yajs'
 "Plug 'othree/es.next.syntax.vim'
-"Plug 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx'
 
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Valloric/YouCompleteMe'
@@ -118,7 +117,8 @@ Plug 'junegunn/vim-easy-align'
 
 " Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
+"SQL kiegészítés
+Plug 'vim-scripts/dbext.vim'
 "Plug 'skammer/vim-css-color'
 "Plug 'ap/vim-css-color'
 "Plug 'chrisbra/Colorizer'
@@ -177,33 +177,39 @@ Plug 'Lokaltog/vim-easymotion'
 "Plug 'terryma/vim-multiple-cursors'
 "Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
-"Plug 'tpope/vim-dispatch'
+"asyncron futtatás 
+Plug 'tpope/vim-dispatch'
 "Plug 'tpope/vim-endwise'
 "Plug 'tpope/vim-eunuch'
 "Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
+"legyenek oldal sávban +-~kijelzések
 Plug 'airblade/vim-gitgutter'
 "Plug 'tpope/vim-leiningen'
 Plug 'tpope/vim-markdown'
 "Plug 'tpope/vim-projectionist'
+"xml-html bilélenytűzet mapping snippetek
 "Plug 'tpope/vim-ragtag'
-"Plug 'tpope/vim-repeat'
+"vim-surround -ot tudjam ismételni
+Plug 'tpope/vim-repeat'
 "Plug 'tpope/vim-sensible'
 "Plug 'tpope/vim-sexp-mappings-for-regular-people'
 "Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-unimpaired'
+"beépített projekt(netrw) nézegetpt egészíti ki
 "Plug 'tpope/vim-vinegar'
 "Plug 'Shutnik/jshint2.vim'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'flazz/vim-colorschemes'
-Plug 'vim-scripts/Vimchant'
+""Plug 'vim-scripts/Vimchant'
+"session management automatikusan
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
 Plug 'jparise/vim-graphql'
 call plug#end()
-let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save = 0  " enable AutoSave on Vim startup
 let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline#extensions#tabline#left_sep = ' '
@@ -246,3 +252,35 @@ hi NonText ctermfg=7 guifg=white
 hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
+" Path to store the cscope files (cscope.files and cscope.out)
+" Defaults to '~/.cscope'
+let g:cscope_dir = '~/.cscope'
+
+" Map the default keys on startup
+" These keys are prefixed by CTRL+\ <cscope param>
+" A.e.: CTRL+\ d for goto definition of word under cursor
+" Defaults to off
+let g:cscope_map_keys = 1
+
+" Update the cscope files on startup of cscope.
+" Defaults to off
+let g:cscope_update_on_start = 1
+set cscopetag
+
+".vimrc
+"map <c-f> :call JsBeautify()<cr>
+"" or
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for json
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+" " for jsx
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+" " for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" " for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
