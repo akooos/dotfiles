@@ -255,6 +255,7 @@ Plug 'jparise/vim-graphql'
 Plug 'felixge/vim-nodejs-errorformat'
 "vim test plugin for mocha etc...
 Plug 'janko-m/vim-test'
+Plug 'vim-scripts/plantuml-syntax'
 call plug#end()
 let g:auto_save = 0  " enable AutoSave on Vim startup
 let g:airline#extensions#tabline#enabled = 1
@@ -287,6 +288,7 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 
+autocmd BufRead,BufNewFile *.plantuml set filetype=plantuml
 " for html/rb files, 2 spaces
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
@@ -383,8 +385,10 @@ if exists("+showtabline")
 endif
 
 "Running scripts save before run
+command! SaveAndNode execute "w | !node %"
 command! SaveAndTestFile execute "w | copen | wincmd p | TestFile | set filetype=javascript"
 command! SaveAndTestNearest execute "w | copen | wincmd p | TestNearest | set filetype=javascript"
+map <F2> :SaveAndNode<CR>
 map <F5> :SaveAndTestFile<CR>
 map <F6> :SaveAndTestNearest<CR>
 
@@ -405,7 +409,7 @@ nmap <silent> <leader>g :TestVisit<CR>
 "   return 'call fugitive#cwindow()'
 " endif
 let g:asyncrun_auto = "make"
-let g:asyncrun_exit = "silent !mpv /home/cauchy/.config/nvim/test_end.oga &> /dev/null & disown"
+let g:asyncrun_exit = "silent !mpv ~/.config/nvim/test_end.oga &> /dev/null & disown"
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 
