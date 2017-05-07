@@ -1,4 +1,4 @@
-" For Neovim 0.1.3 and 0.1.4
+"For Neovim 0.1.3 and 0.1.4
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Or if you have Neovim >= 0.1.5
@@ -7,6 +7,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " set termguicolors
 "endif
 syntax on
+set hidden
 set modeline
 set nu 
 set rnu 
@@ -94,12 +95,13 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
 " let g:deoplete#disable_auto_complete = 1
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -145,13 +147,18 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 "Plug 'lervag/vimtex'
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
 "Tern analysis for javascript
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'ternjs/tern_for_vim'
+"JavaScript Parameter Complete(JSPC) is a completion function for function
+"parameters, such as event names, crypto algorithms, and common locales.
+Plug 'othree/jspc.vim'
 "Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
@@ -168,7 +175,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using a non-master branch
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
 " Plugin options
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
@@ -257,7 +264,7 @@ Plug 'felixge/vim-nodejs-errorformat'
 Plug 'janko-m/vim-test'
 Plug 'vim-scripts/plantuml-syntax'
 call plug#end()
-let g:auto_save = 0  " enable AutoSave on Vim startup
+let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline#extensions#tabline#left_sep = ' '
@@ -272,14 +279,15 @@ colorscheme monokai-phoenix
 let g:airline_theme= 'wombat'
 let jshint2_save = 1
 let jshint2_read = 1
-let g:jsx_ext_required = 1
+let g:jsx_ext_required = 0
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 let g:tex_flavor='latex'
 let g:vimchant_spellcheck_lang = 'hu'
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
+let g:auto_save_events = ["InsertLeave" ]
+" , "TextChanged"]
 
 autocmd BufRead,BufNewFile *.css,*.qss,*.html ColorHighlight
 autocmd BufRead,BufNewFile .babelrc,.eslintrc,.jshintrc set filetype=json
@@ -297,20 +305,7 @@ autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
-hi NonText ctermfg=7 guifg=white
-" Path to store the cscope files (cscope.files and cscope.out)
-" Defaults to '~/.cscope'
-let g:cscope_dir = '~/.cscope'
-
-" Map the default keys on startup
-" These keys are prefixed by CTRL+\ <cscope param>
-" A.e.: CTRL+\ d for goto definition of word under cursor
-" Defaults to off
-let g:cscope_map_keys = 1
-
-" Update the cscope files on startup of cscope.
-" Defaults to off
-let g:cscope_update_on_start = 1
+hi NonText ctermfg=7 guifg=yellow
 set cscopetag
 
 ".vimrc
@@ -388,10 +383,17 @@ endif
 command! SaveAndNode execute "w | !node %"
 command! SaveAndTestFile execute "w | copen | wincmd p | TestFile | set filetype=javascript"
 command! SaveAndTestNearest execute "w | copen | wincmd p | TestNearest | set filetype=javascript"
-map <F2> :SaveAndNode<CR>
-map <F5> :SaveAndTestFile<CR>
-map <F6> :SaveAndTestNearest<CR>
+nmap <F2>  :SaveAndNode<CR>
+nmap <F5>  :SaveAndTestFile<CR>
+nmap <F6>  :SaveAndTestNearest<CR>
 
+imap <F2>  <ESC>:SaveAndNode<CR>
+imap <F5>  <ESC>:SaveAndTestFile<CR>
+imap <F6>  <ESC>:SaveAndTestNearest<CR>
+
+vmap <F2>  <ESC>:SaveAndNode<CR>
+vmap <F5>  <ESC>:SaveAndTestFile<CR>
+vmap <F6>  <ESC>:SaveAndTestNearest<CR>
 "vim-test plugin shortcuts
 " make test commands execute using dispatch.vim
 let test#strategy = "asyncrun"
@@ -422,20 +424,48 @@ augroup omnifuncs
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup end
-" tern
-if exists('g:plugs["tern_for_vim"]')
-  let g:tern_show_argument_hints = 'on_hold'
-  let g:tern_show_signature_in_pum = 1
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
-endif
-"let errormarker_disablemappings = 1
-let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat 
-"0x0001F41E
-let errormarker_errortext = "⚡"
-let errormarker_warningtext = "⚠"
-let errormarker_erroricon = "/home/cauchy/.config/nvim/tools-report-bug.ico"
-let errormarker_warningicon = "/home/cauchy/.config/nvim/dialog-warning.ico"
-let test#javascript#mocha#options = '-R mocha-vim-reporter --compilers js:babel-core/register --bail'
-"still no compile flags hibaüzenet miatt
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-"let mapleader="-"
+  " tern
+
+  if exists('g:plugs["tern_for_vim"]')
+    let g:tern_show_argument_hints = 'on_hold'
+    let g:tern_show_signature_in_pum = 1
+    autocmd FileType javascript setlocal omnifunc=tern#Complete
+  endif
+  "let errormarker_disablemappings = 1
+  let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat 
+  "0x0001F41E
+  let errormarker_errortext = "⚡"
+  let errormarker_warningtext = "⚠"
+  let errormarker_erroricon = "/home/cauchy/.config/nvim/tools-report-bug.ico"
+  let errormarker_warningicon = "/home/cauchy/.config/nvim/dialog-warning.ico"
+  let test#javascript#mocha#options = '-R mocha-vim-reporter --compilers js:babel-core/register --bail'
+  "still no compile flags hibaüzenet miatt
+  "let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+  if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+      cs add cscope.out
+      " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+      cs add $CSCOPE_DB
+    endif
+    set csverb
+  endif
+  function! StartUp()
+    if 0 == argc()
+      NERDTree
+    end
+  endfunction
+
+  autocmd VimEnter * call StartUp()
+  
+command -nargs=1 Mycd call MyCd(<args>)
+function MyCd(path)
+  cd a:path
+  e somefile.ext
+endfunction
